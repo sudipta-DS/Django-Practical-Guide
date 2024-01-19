@@ -54,7 +54,9 @@ ROOT_URLCONF = 'urls_views.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'challenges/templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
