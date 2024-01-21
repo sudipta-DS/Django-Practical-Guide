@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpRequest,HttpResponse,HttpResponseNotFound,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseNotFound,HttpResponseRedirect
 from django.urls import reverse
 from django.template.loader import render_to_string
 # Create your views here.
@@ -15,7 +15,7 @@ monthly_challenges = {
     "september": "Learn Django for at least 20 minutes every day!",
     "october": "Eat no meat for the entire month!",
     "november": "Walk for at least 20 minutes every day!",
-    "december": "Learn Django for at least 20 minutes every day!"
+    "december": None
 }
 months = list(monthly_challenges.keys())
 
@@ -23,8 +23,10 @@ def challenges(request):
     # return render(request,'index.html',{
     #     'months':months
     # })
-    text = render_to_string('challenges/challenges.html')
-    return HttpResponse(text)
+    text = monthly_challenges['june']
+    return render(request,'challenges/index.html',{
+        'months':months
+    })
 
 
 def monthly_challenges_by_number(request,month):
@@ -38,6 +40,10 @@ def monthly_challenges_by_number(request,month):
 def monthly_challenge(request,month):
     try:
         challenge_text = monthly_challenges[month]
-        return HttpResponse(challenge_text)
+        challenge_month = month
+        return render(request,'challenges/challenge.html',{
+            'text' : challenge_text,
+            'month' : challenge_month
+        })
     except: 
         return HttpResponseNotFound('Try hard!')
