@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse,HttpResponseNotFound,HttpResponseRedirect
+from django.http import HttpResponseNotFound,HttpResponseRedirect,Http404
 from django.urls import reverse
 from django.template.loader import render_to_string
 # Create your views here.
@@ -46,4 +46,5 @@ def monthly_challenge(request,month):
             'month' : challenge_month
         })
     except: 
-        return HttpResponseNotFound('Try hard!')
+        # text = render_to_string('404.html')
+        raise Http404()
