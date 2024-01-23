@@ -5,15 +5,19 @@
 All posts
 {% endblock page_title %}
 
-
+{% block css_styles %}
+<link rel='stylesheet' href="{% static "posts/post.css" %}">
+<link rel='stylesheet' href="{% static "posts/all-posts.css" %}">
+{% endblock css_styles %}
 
 {% block content %}
-     <ul>
-         {% include "posts/includes/post.html" %}
-         {% include "posts/includes/post.html" %}
-         {% include "posts/includes/post.html" %}
-         {% include "posts/includes/post.html" %}
-         {% include "posts/includes/post.html" %}
-     </ul>
-
+         <ul>
+             {% include "posts/includes/post.html" %}
+             {% include "posts/includes/post.html" %}
+             {% include "posts/includes/post.html" %}
+             {% include "posts/includes/post.html" %}
+             {% include "posts/includes/post.html" %}
+             {% include "posts/includes/post.html" %}
+             {% include "posts/includes/post.html" %}
+         </ul>
 {% endblock content %}
