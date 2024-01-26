@@ -1,7 +1,7 @@
 {% extends "base.html" %} 
 {% load static %}
 
-{% block title %} 
+{% block page_title %} 
 My Blog 
 {% endblock %} 
 
@@ -23,7 +23,9 @@ My Blog
   <h2>My Latest Thoughts</h2>
 
   <ul>
+    {% for post in posts %}
     {% include "posts/includes/post.html" %}
+    {% endfor %}
   </ul>
 </section>
 

@@ -12,12 +12,8 @@ All posts
 
 {% block content %}
          <ul>
-             {% include "posts/includes/post.html" %}
-             {% include "posts/includes/post.html" %}
-             {% include "posts/includes/post.html" %}
-             {% include "posts/includes/post.html" %}
-             {% include "posts/includes/post.html" %}
-             {% include "posts/includes/post.html" %}
-             {% include "posts/includes/post.html" %}
+            {% for post in posts %}
+            {% include "posts/includes/post.html" %}
+            {% endfor %}
          </ul>
 {% endblock content %}
