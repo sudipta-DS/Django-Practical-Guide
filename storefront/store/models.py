@@ -1,8 +1,16 @@
 from django.db import models
 
 # Create your models here.
+class Promotion(models.Model):
+    description = models.CharField(max_length=100)
+    discount = models.DecimalField(max_digits=6,decimal_places=2)
+
 class Collection(models.Model):
     name = models.CharField(max_length=100)
+    featured_product = models.ForeignKey('Products',
+                                         on_delete=models.CASCADE,
+                                         null=True,
+                                         related_name='+')
 
 class Products(models.Model):
     title = models.CharField(max_length=100)
@@ -11,12 +19,13 @@ class Products(models.Model):
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
     collection = models.ForeignKey(Collection,on_delete=models.CASCADE) 
+    promotions = models.ManyToManyField(Promotion)
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_digits=10)
+    phone = models.CharField(max_length=10)
     birth_date = models.DateField(null=True)
 
 class Order(models.Model):
